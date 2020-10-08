@@ -7,7 +7,37 @@ object Conversion {
      * Please refer to the tests for expected output.
      */
     fun decToBinary(value: Int): String {
-        return "implement me!"
+        if (value == 0) {
+            return "0"
+        } else if (value == 1) {
+            return "1"
+        }
+
+        var shiftedValue = 1
+        val sb = StringBuilder()
+        var count = 0
+
+        for (x in 0 until Int.SIZE_BITS) {
+            val result = shiftedValue and value
+
+            if (value > 0 && (x == Int.SIZE_BITS - 1 || shiftedValue > value)) {
+                break
+            }
+
+            if (count == 8) {
+                sb.append('.')
+
+                count = 1
+            } else {
+                count++
+            }
+
+            sb.append(if (result != 0) '1' else '0')
+
+            shiftedValue = shiftedValue.shl(1)
+        }
+
+        return sb.reverse().toString()
     }
 }
 
