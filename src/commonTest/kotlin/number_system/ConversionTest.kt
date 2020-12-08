@@ -23,6 +23,12 @@ class ConversionTest {
     }
 
     @Test
+    fun twentyCase() {
+        val value = Conversion.decToBinary(300)
+        assertEquals("1.00101100" , value)
+    }
+
+    @Test
     fun greaterThanOneCase() {
         val value = Conversion.decToBinary(12357)
         assertEquals("110000.01000101" , value)
@@ -54,4 +60,14 @@ class ConversionTest {
         val value = Conversion.decToBinary(-1)
         assertEquals("11111111.11111111.11111111.11111111" , value)
     }
+
+    @Test
+    fun negativeTwoCase() {
+        val value = Conversion.decToBinary(-2)
+        assertEquals("11111111.11111111.11111111.11111110" , value)
+    }
+
+
+
+
 }
