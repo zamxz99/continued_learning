@@ -23,7 +23,7 @@ import com.android.tools.lint.detector.api.CURRENT_API
  */
 @Suppress("UnstableApiUsage")
 class ContinuedLearningIssueRegistry : IssueRegistry() {
-    override val issues = listOf(LabCodeDetector.ISSUE, LabXmlDetector.ISSUE) //TODO list issues here
+    override val issues = //TODO list issues here
 
     override val api: Int
         get() = CURRENT_API

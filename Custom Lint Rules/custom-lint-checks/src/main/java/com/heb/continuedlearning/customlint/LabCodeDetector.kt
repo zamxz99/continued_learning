@@ -15,9 +15,7 @@
  */
 package com.heb.continuedlearning.customlint
 
-import com.android.SdkConstants
 import com.android.tools.lint.detector.api.*
-import org.jetbrains.uast.UClass
 
 /**
  * Sample code detector for lab.
@@ -25,48 +23,13 @@ import org.jetbrains.uast.UClass
  */
 class LabCodeDetector : Detector(), SourceCodeScanner {
 
-    // indicate what code is applicable
-    override fun applicableSuperClasses(): List<String>? {
-        return listOf(SdkConstants.CLASS_FRAGMENT)
-    }
-    override fun visitClass(context: JavaContext, declaration: UClass) {
-        var vmCount = 0
-        for (field in declaration.allFields){
-            val vmDescendant = field.type.superTypes.filter{it.presentableText == "ViewModel"}
-            if (field.type.presentableText == "ViewModel" || vmDescendant.isNotEmpty()){
-                vmCount++
-            }
-        }
-        // fragment is missing a ViewModel
-        if (vmCount == 0){
-            context.report(ISSUE, context.getNameLocation(declaration), "Fragment doesn't contain ViewModel")
-        }
-    }
+    // TODO indicate what code this detector is interested in
+
+    // TODO implement callback methods and write logic
 
     companion object {
-        /** Issue describing the problem and pointing to the detector implementation */
+        /** TODO create Issue describing the problem and pointing to the detector implementation */
         @JvmField
-        val ISSUE: Issue = Issue.create(
-            // ID: used in @SuppressLint warnings etc
-            id = "MissingViewModel",
-            // Title -- shown in the IDE's preference dialog, as category headers in the
-            // Analysis results window, etc
-            briefDescription = "Fragment is missing a ViewModel",
-            // Full explanation of the issue; you can use some markdown markup such as
-            // `monospace`, *italic*, and **bold**.
-            explanation = """
-                    This check highlights fragments that are missing `ViewModel`s. \
-                    Blah blah blah.
-
-                    Another paragraph here.
-                    """, // no need to .trimIndent(), lint does that automatically
-            category = Category.CORRECTNESS,
-            priority = 5,
-            severity = Severity.WARNING,
-            implementation = Implementation(
-                LabCodeDetector::class.java,
-                Scope.JAVA_FILE_SCOPE
-            )
-        )
+        val ISSUE: Issue = Issue.create()
     }
 }
