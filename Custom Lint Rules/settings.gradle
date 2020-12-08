@@ -1,0 +1,2 @@
+include ':app', ':custom-lint-checks'
+rootProject.name = "CustomLintSampleApp"
